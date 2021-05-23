@@ -1,0 +1,34 @@
+{
+  "name": "covid-19",
+  "version": "1.0.0",
+  "description": "vaccine tracker for covid-19",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/k4iru/covid-19.git"
+  },
+  "author": "Kyle Cheung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/k4iru/covid-19/issues"
+  },
+  "homepage": "https://github.com/k4iru/covid-19#readme",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.37.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "css-loader": "^5.2.5",
+    "html-webpack-plugin": "^5.3.1",
+    "react-hot-loader": "^4.13.0",
+    "style-loader": "^2.0.0"
+  }
+}
