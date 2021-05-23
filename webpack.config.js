@@ -25,16 +25,10 @@ module.exports = {
       {
         test: /\.css$/i,
         use: ["style-loader", "css-loader"],
-        options: {
-            outputPath: './styles',
-        }
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         use: "asset",
-        options: {
-            outputPath: './assets',
-        }
       },
       {
         test: /\.(js|jsx)$/,
@@ -42,7 +36,6 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            outputPath: './scripts',
             presets: ["@babel/preset-env", "@babel/preset-react"],
           },
         },
