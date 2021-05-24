@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
-import Chart from 'chart.js';
+import Chart from "chart.js";
 import numeral from "numeral";
+import './linegraph.css';
 
 const options = {
   legend: {
@@ -27,8 +28,9 @@ const options = {
       {
         type: "time",
         time: {
-          format: "MM/DD/YY",
-          tooltipFormat: "ll",
+          displayFormats: {
+            quarter: "MM YYYY",
+          },
         },
       },
     ],
@@ -46,7 +48,7 @@ const options = {
       },
     ],
   },
-}
+};
 
 const buildChartData = (data, casesType) => {
   let chartData = [];
@@ -66,7 +68,7 @@ const buildChartData = (data, casesType) => {
 
 function LineGraph({ casesType = "cases" }) {
   const [data, setData] = useState({});
-  const [chartOptions, setOptions] =useState(options)
+  const [chartOptions, setOptions] = useState(options);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +79,6 @@ function LineGraph({ casesType = "cases" }) {
         .then((data) => {
           let chartData = buildChartData(data, casesType);
           setData(chartData);
-          console.log(chartOptions);
         });
     };
 
@@ -85,7 +86,7 @@ function LineGraph({ casesType = "cases" }) {
   }, [casesType]);
 
   return (
-    <div>
+    <div className="chart">
       {data?.length > 0 && (
         <Line
           data={{
