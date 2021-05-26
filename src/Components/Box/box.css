@@ -8,17 +8,9 @@
   }
   
   .infoBox--selected {
-    border-top: 10px solid greenyellow;
+    border-top: 10px solid #4287f5;
   }
-  
-  .infoBox--red {
-    border-color: red;
-  }
-  
-  .infoBox__cases--green {
-    color: lightgreen !important;
-  }
-  
+
   .infoBox__cases {
     color: #cc1034;
     font-weight: 600;
