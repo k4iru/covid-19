@@ -95,8 +95,6 @@ function App() {
 
     setCountryInfo(data);
 
-    // map zoom for leaflet. higher value for higher zoom out
-    setMapZoom(4);
   };
 
   const updateTable = async () => {
@@ -127,9 +125,6 @@ function App() {
 
     setCountryInfo(data);
     setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
-
-    // map zoom for leaflet. higher value for higher zoom out
-    setMapZoom(4);
   };
 
   // on mount fetch list of countries, and set table data
