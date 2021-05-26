@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js";
 import numeral from "numeral";
-import './linegraph.css';
+import "./linegraph.css";
 
 const options = {
   legend: {
@@ -29,7 +29,7 @@ const options = {
         type: "time",
         time: {
           displayFormats: {
-            quarter: "MM YYYY",
+            week: true,
           },
         },
       },
@@ -41,49 +41,47 @@ const options = {
         },
         ticks: {
           // Include a dollar sign in the ticks
-          callback: function (value, index, values) {
-            return numeral(value).format("0a");
-          },
+          callback: function(value,index,values) {
+            return numeral(value).format("0,0");
+          }
         },
       },
     ],
   },
 };
 
-const buildChartData = (data, casesType) => {
+const buildChartData = (data, caseType) => {
   let chartData = [];
   let lastDataPoint;
   for (let date in data.cases) {
     if (lastDataPoint) {
       let newDataPoint = {
         x: date,
-        y: data[casesType][date] - lastDataPoint,
+        y: data[caseType][date] - lastDataPoint,
       };
       chartData.push(newDataPoint);
     }
-    lastDataPoint = data[casesType][date];
+    lastDataPoint = data[caseType][date];
   }
   return chartData;
 };
 
-function LineGraph({ casesType = "cases" }) {
+function LineGraph({ caseType = "cases" }) {
   const [data, setData] = useState({});
   const [chartOptions, setOptions] = useState(options);
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let chartData = buildChartData(data, casesType);
-          setData(chartData);
-        });
+      const response = await fetch(
+        "https://disease.sh/v3/covid-19/historical/all?lastdays=120"
+      );
+      const chartSet = await response.json();
+      let chartData = buildChartData(chartSet, caseType);
+      setData(chartData);
     };
 
     fetchData();
-  }, [casesType]);
+  }, [caseType]);
 
   return (
     <div className="chart">
@@ -92,9 +90,10 @@ function LineGraph({ casesType = "cases" }) {
           data={{
             datasets: [
               {
-                backgroundColor: "rgba(204, 16, 52, 0.5)",
-                borderColor: "#CC1034",
+                backgroundColor: "#4287f5",
+                borderColor: "#4287f5",
                 data: data,
+                fill: false,
               },
             ],
           }}
